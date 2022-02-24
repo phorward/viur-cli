@@ -43,6 +43,8 @@ def env():
     try:
         click.echo(f'Vi: {projectConfig["default"]["vi"]}')
         click.echo(f'Core: {projectConfig["default"]["core"]}')
+        click.echo(f'Pyodide: {projectConfig["default"]["pyodide"]}')
+        click.echo(f'format: {projectConfig["default"]["format"]}')
     except:
         echo_error("Error while collecting viur info")
     click.echo(f"\nCurrent Environment:\n--------------------------------")
@@ -79,6 +81,13 @@ def env():
     if shutil.which("python"):
         npm_version = subprocess.check_output(['python', '-V']).decode("utf-8")
         click.echo(f"{valid_icon} python > {npm_version}")
+    else:
+        click.echo(f"{failed_icon}")
+
+    # python3
+    if shutil.which("pyenv"):
+        pyenv_version = subprocess.check_output(['pyenv', '--version']).decode("utf-8")
+        click.echo(f"{valid_icon} {pyenv_version}")
     else:
         click.echo(f"{failed_icon}")
 

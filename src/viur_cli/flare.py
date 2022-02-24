@@ -17,6 +17,9 @@ def flare(action: str, name: str, additional_args: List[str]):
             echo_error(f'Please install "zip" to bundle a flare application.')
             return
 
+
+
+
         additional_args = ["-mzc"]
     elif action == "debug":
         pass

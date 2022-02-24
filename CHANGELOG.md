@@ -1,6 +1,26 @@
 # Changelog
 
 This file documents any relevant changes.
+## [0.6.6] - 2022-02-23
+- [BREAKING]: `viur release` requires pyenv to enforce python 3.9.5
+
+## [0.6.5] - 2022-02-22
+- added: config format versioning
+- added: pyodide version
+- added: conf update function
+- added: npm command by default it tries to call npm run build
+- added: release command
+- [BREAKING]: vue command removed, use npm instead
+- [BREAKING]: assets command removed, use npm instead
+- 
+## [0.6.4] - 2022-02-21
+- fix: get-pyodide now uses 0.19
+
+## [0.6.3] - 2022-01-21
+- feat: Updated python-minifier to allow Python 3.10
+
+## [0.6.2] - 2022-01-21
+- feat: Autocompletion for bash and zsh
 
 ## [0.6.1] - 2021-12-21
 
