@@ -1,0 +1,31 @@
+{
+    "default": {
+        "core": "submodule",
+        "distribution_folder": "./deploy",
+        "flare": {
+            "vi": {
+                "source": "./sources/viur-vi",
+                "target": "./deploy/vi"
+            }
+        },
+        "format": "1.0.0",
+        "pyodide": "v0.19.0",
+        "sources_folder": "./sources"
+    },
+    "develop": {
+        "application_name": "akviur3test",
+        "version": "ak-dev"
+    },
+    "live": {
+        "application_name": "akviur3test",
+        "version": "$(date)-$(version)-$(random)-ak-dev"
+    },
+    "preview": {
+        "application_name": "akviur3test",
+        "version": "$(date)-$(version)-$(random)-ak-dev"
+    },
+    "test": {
+        "application_name": "akviur3test",
+        "version": "$(date)-$(version)-$(random)-ak-dev"
+    }
+}

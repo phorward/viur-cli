@@ -38,3 +38,8 @@ def fix(action):
         os.system("chmod +x scripts/macos_certificate_fix.command && ./scripts/macos_certificate_fix.command")
         click.echo()
 
+@cli.command()
+def ui():
+    "start webui"
+    from .ui.main import main
+    main()

@@ -33,7 +33,10 @@ def path():
 
 @default.route("/user")
 def user():
-	return os.getlogin()
+	try:
+		return os.getlogin()
+	except:
+		return "-"
 
 @default.route("/cwd")
 def cwd():

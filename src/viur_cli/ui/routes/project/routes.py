@@ -8,7 +8,6 @@ def state():
 
 @project.route("/start", methods=["POST"])
 def start():
-	
 	state = TaskManager().is_core_running()
 	if not TaskManager().is_core_running():
 		TaskManager().local_run("server")

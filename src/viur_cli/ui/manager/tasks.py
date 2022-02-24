@@ -17,35 +17,22 @@ class CoreRunner(threading.Thread):
 			if type(line) is bytes:
 				line = line.decode("utf-8")
 			line = line.rstrip()
-			print(line)
+
 			socketio_lock.acquire()
 			io.socketio.emit("run", line+os.linesep)
 			socketio_lock.release()
 
 	def run(self) -> None:
 		try:
-			p = subprocess.Popen(['viur', 'run'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+			p = subprocess.Popen(['viur', 'run'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.DEVNULL)
 			os.set_blocking(p.stdout.fileno(), False)
 
 			while not getattr(self, "stop", False):
-				## Nur zum testen
-				#os.chdir("/home/cian/Projects/gruenerleben")
-				#print("Testing...")
-				#os.system("pipenv shell")
-				#for line in iter(p.stdout.readline, b''):
-				#	if line:
-				#		self.send(line.rstrip())
-
-				print("Hello!")
-
-				#print(p.stdout.seek(0))
 				line = p.stderr.readline()
 				if line:
 					self.send(line)
 
-				"""line = p.stderr.readline()
-				if line:
-					self.send(line)"""
 		except:
 			traceback.print_exc()
 
@@ -54,7 +41,7 @@ class TaskManager(Singleton):
 	def __init__(self):
 		self._scheduler = APScheduler()
 		self._thread: CoreRunner = None
-	
+
 	def __del__(self):
 		self._scheduler.shutdown(True)
 		del self._scheduler
