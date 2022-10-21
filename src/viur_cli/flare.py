@@ -12,7 +12,7 @@ def flare(action, name, additional_args):
     additional_args = list(additional_args)
 
     if action == "release":
-        additional_args = ["-mzc"]
+        additional_args = ["-zc"]
     elif action == "debug":
         pass
     elif action == "watch":
