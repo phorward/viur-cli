@@ -9,50 +9,7 @@ import glob
 from requests.sessions import cookiejar_from_dict
 from weakref import proxy
 from .scriptor import Request, init, viur
-from ..cli import cli
-
-
-class Config(dict):
-    """
-    Manage scriptor configuration.
-    """
-    CONFIG_FILE_NAME = "viur_scriptor_config.json"
-    DEFAULT_BASE_URL = "http://localhost:8080"
-    DEFAULT_WORKING_DIR = "scripts/"
-
-    def __new__(cls):
-        if not getattr(cls, "_instance", None):
-            cls._instance = super().__new__(cls)
-
-            # use defaults in config
-            cls._instance |= {
-                "base_url": cls.DEFAULT_BASE_URL,
-                "working_dir": cls.DEFAULT_WORKING_DIR,
-            }
-
-            if os.path.exists(cls.CONFIG_FILE_NAME):
-                with open(cls.CONFIG_FILE_NAME, "r") as f:
-                    cls._instance |= json.load(f)
-
-        return proxy(cls._instance)
-
-    def dump(self):
-        with open(self.CONFIG_FILE_NAME, "w") as f:
-            json.dump(self, f)
-
-    def __setitem__(self, __key: str, __value: object) -> None:
-        super().__setitem__(__key, __value)
-        self.dump()
-
-    def __delitem__(self, __key: str) -> None:
-        super().__delitem__(__key)
-        self.dump()
-
-
-def build_url(url: str):
-    return Config()["base_url"] + "/" + url
-
-viur.request.build_url = staticmethod(build_url)
+from .cli import cli
 
 
 @cli.group()

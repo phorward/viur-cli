@@ -7,5 +7,5 @@ from .npm import *
 from .build import *
 from .setup import *
 from .version import *
-from .scriptor import script
+from .script import *
 from .tool import *
